@@ -17,7 +17,8 @@ dependencies {
             project(':grpc-netty'),
             project(':grpc-okhttp'),
             project(':grpc-stub'),
-            libraries.jsonp
+            libraries.jsonp,
+            ('org.apache.commons:commons-lang3:3.3.2')
 }
 
 protobufCodeGenPlugins = ["java_plugin:$javaPluginPath"]
@@ -44,6 +45,18 @@ task helloWorldServer(type: JavaExec) {
 task helloWorldClient(type: JavaExec) {
     main = "io.grpc.examples.helloworld.HelloWorldClient"
     description = "Executes the hello world client."
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task pollServiceServer(type: JavaExec) {
+    main = "edu.sjsu.cmpe273.lab2.PollServiceServer"
+    description = "Executes the poll service server."
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task pollServiceClient(type: JavaExec) {
+    main = "edu.sjsu.cmpe273.lab2.PollServiceClient"
+    description = "Executes the poll service client."
     classpath = sourceSets.main.runtimeClasspath
 }
 
